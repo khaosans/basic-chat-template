@@ -17,7 +17,7 @@ def get_available_models():
         response = requests.get('http://localhost:11434/api/tags')
         response.raise_for_status()
         models = response.json().get('models', [])
-        return [model['name'] for model in models] or ['llama2']
+        return [model['name'] for model in models] or ['mistral']
     except requests.exceptions.RequestException as e:
         print(f"Error fetching models: {e}")
-        return ['llama2']  # Return default model as fallback
+        return ['mistral']  # Return default model as fallback
