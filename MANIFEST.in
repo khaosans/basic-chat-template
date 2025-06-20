@@ -1,0 +1,36 @@
+# Include README and documentation
+include README.md
+include LICENSE
+include requirements.txt
+include pytest.ini
+
+# Include configuration files
+include .env.example
+recursive-include docs *.md
+recursive-include diagrams *.md
+
+# Include assets
+recursive-include assets *
+recursive-include scripts *.py
+
+# Include test files
+recursive-include tests *.py
+recursive-include tests *.md
+
+# Include database migrations
+recursive-include migrations *.sql
+
+# Include tickets
+recursive-include tickets *.md
+
+# Exclude unnecessary files
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude __pycache__
+global-exclude .git*
+global-exclude .DS_Store
+global-exclude *.log
+global-exclude temp_*
+global-exclude chroma_db
+global-exclude .env.local 

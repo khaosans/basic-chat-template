@@ -5,13 +5,13 @@ Tests for the reasoning engine functionality
 import pytest
 import asyncio
 from unittest.mock import Mock, patch
-from reasoning_engine import (
+from src.reasoning import (
     ReasoningAgent,
     ReasoningChain,
     MultiStepReasoning,
     ReasoningResult
 )
-from utils.async_ollama import AsyncOllamaClient, AsyncOllamaChat
+from src.utils.async_ollama import AsyncOllamaClient, AsyncOllamaChat
 
 def test_reasoning_result_creation():
     """Test creation of ReasoningResult"""

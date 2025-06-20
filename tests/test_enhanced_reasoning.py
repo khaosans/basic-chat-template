@@ -4,8 +4,8 @@ Tests for enhanced reasoning engine with improved tools
 
 import pytest
 from unittest.mock import Mock, patch
-from reasoning_engine import ReasoningAgent, ReasoningResult
-from utils.enhanced_tools import EnhancedCalculator, EnhancedTimeTools
+from src.reasoning import ReasoningAgent, ReasoningResult
+from src.utils.enhanced_tools import EnhancedCalculator, EnhancedTimeTools
 
 class TestEnhancedReasoningAgent:
     """Test enhanced reasoning agent with improved tools"""
@@ -169,7 +169,7 @@ class TestEnhancedReasoningAgent:
         assert "⏱️ Time Difference:" in result
         assert "📊 In days: 1" in result
     
-    @patch('reasoning_engine.ReasoningAgent.run')
+    @patch('src.reasoning.ReasoningAgent.run')
     def test_agent_run_with_enhanced_tools(self, mock_run):
         """Test that agent run method works with enhanced tools"""
         # Mock the agent run method to return a successful result

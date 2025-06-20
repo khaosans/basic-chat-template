@@ -9,7 +9,7 @@ import sqlite3
 from pathlib import Path
 from datetime import datetime
 
-from database_migrations import (
+from src.database import (
     MigrationManager, 
     Migration, 
     initialize_migrations, 

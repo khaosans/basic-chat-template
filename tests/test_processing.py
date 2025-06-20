@@ -3,7 +3,7 @@ Tests for document processing functionality
 """
 
 import pytest
-from document_processor import DocumentProcessor
+from src.core.document_processor import DocumentProcessor
 
 def test_document_processor_initialization():
     """Test DocumentProcessor initialization"""

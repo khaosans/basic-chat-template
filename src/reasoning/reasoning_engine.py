@@ -19,8 +19,8 @@ from langchain.chains import LLMChain
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain.docstore.document import Document
-from web_search import search_web
-from utils.enhanced_tools import EnhancedCalculator, EnhancedTimeTools
+from src.api.web_search import search_web
+from src.utils.enhanced_tools import EnhancedCalculator, EnhancedTimeTools
 
 # Load environment variables
 OLLAMA_API_URL = os.environ.get("OLLAMA_API_URL", "http://localhost:11434/api")

@@ -10,8 +10,8 @@ import aiohttp
 import logging
 from asyncio_throttle import Throttler
 
-from config import config
-from utils.caching import response_cache
+from src.config import config
+from src.utils.caching import response_cache
 
 logger = logging.getLogger(__name__)
 

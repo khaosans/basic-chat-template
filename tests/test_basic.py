@@ -1,7 +1,7 @@
 import unittest
-from app import OllamaChat
-from config import AppConfig, config
-from utils.caching import MemoryCache, ResponseCache, response_cache
+from src.core.app import OllamaChat
+from src.config import AppConfig, config
+from src.utils.caching import MemoryCache, ResponseCache, response_cache
 
 class TestBasicFunctionality(unittest.TestCase):
     def test_ollamachat_initialization(self):

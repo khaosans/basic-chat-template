@@ -1,13 +1,7 @@
 import streamlit as st
-# Must be first Streamlit command
-st.set_page_config(
-    page_title="Ollama Chatbot",
-    page_icon="🤖",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 import os
+import sys
 import time
 import requests
 import json
@@ -25,8 +19,14 @@ from gtts import gTTS
 import hashlib
 import base64
 
+# Add the project root to Python path for imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(current_dir))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 # Import our new reasoning engine
-from reasoning_engine import (
+from src.reasoning import (
     ReasoningAgent, 
     ReasoningChain, 
     MultiStepReasoning, 
@@ -35,12 +35,15 @@ from reasoning_engine import (
 )
 
 # Import new async components
-from config import config
-from utils.async_ollama import AsyncOllamaChat, async_chat
-from utils.caching import response_cache
+from src.config import config
+from src.utils.async_ollama import AsyncOllamaChat, async_chat
+from src.utils.caching import response_cache
 
 # Import session management
-from session_manager import session_manager, ChatSession
+from src.session import session_manager, ChatSession
+
+# Import the proper document processor
+from src.core.document_processor import DocumentProcessor
 
 load_dotenv(".env.local")  # Load environment variables from .env.local
 
@@ -1132,7 +1135,7 @@ def enhanced_chat_interface(doc_processor):
         }
         
         try:
-            from ollama_api import get_available_models
+            from src.api.ollama_api import get_available_models
             available_models = get_available_models()
             
             # Initialize session state for model selection if not exists
@@ -1324,6 +1327,14 @@ def enhanced_chat_interface(doc_processor):
 # Main Function
 def main():
     """Main application entry point"""
+    
+    # Must be first Streamlit command
+    st.set_page_config(
+        page_title="Ollama Chatbot",
+        page_icon="🤖",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
     
     # Clean up audio files on app start
     if "audio_cleanup_done" not in st.session_state:

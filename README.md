@@ -4,8 +4,10 @@
 - [Overview](#overview)
 - [Demo](#-demo)
 - [Key Features](#-key-features)
+- [Project Structure](#-project-structure)
 - [Quick Start](#-quick-start)
 - [Documentation](#-documentation)
+- [Testing](#-testing)
 - [Contributing](#-contributing)
 - [License](#-license)
 
@@ -76,6 +78,50 @@ Never lose your conversations with advanced session management:
 - **📤 Export & Import**: JSON and Markdown export/import for data portability
 - **🔄 Session Controls**: Create, load, and manage conversations with auto-save functionality
 
+## 📁 Project Structure
+
+```
+basic-chat-template/
+├── src/                          # Source code (organized by functionality)
+│   ├── core/                     # Core application logic
+│   │   ├── app.py               # Main Streamlit application
+│   │   └── document_processor.py # Document processing logic
+│   ├── reasoning/                # Advanced reasoning engine
+│   │   └── reasoning_engine.py  # Chain-of-thought, multi-step, agent-based reasoning
+│   ├── session/                  # Session management
+│   │   └── session_manager.py   # Chat session persistence and management
+│   ├── api/                      # External API integrations
+│   │   ├── ollama_api.py        # Ollama API client
+│   │   └── web_search.py        # Web search functionality
+│   ├── utils/                    # Utility modules
+│   │   ├── async_ollama.py      # Async Ollama client
+│   │   ├── caching.py           # Caching system
+│   │   └── enhanced_tools.py    # Enhanced calculator and time tools
+│   ├── config/                   # Configuration management
+│   │   └── config.py            # Application configuration
+│   └── database/                 # Database management
+│       └── database_migrations.py # Database migration system
+├── tests/                        # Comprehensive test suite
+│   ├── test_app.py              # Main application tests
+│   ├── test_reasoning.py        # Reasoning engine tests
+│   ├── test_session_manager.py  # Session management tests
+│   ├── test_enhanced_tools.py   # Enhanced tools tests
+│   └── conftest.py              # Test configuration and fixtures
+├── docs/                         # Documentation
+│   ├── ARCHITECTURE.md          # System architecture
+│   ├── DEVELOPMENT.md           # Development guide
+│   ├── FEATURES.md              # Features documentation
+│   └── INSTALLATION.md          # Installation guide
+├── diagrams/                     # Architecture diagrams
+│   └── architecture.md          # Mermaid diagrams and system overview
+├── scripts/                      # Automation scripts
+├── assets/                       # Static assets (images, logos)
+├── app.py                       # Main entry point (Streamlit)
+├── requirements.txt             # Python dependencies
+├── setup.py                     # Setup script
+└── README.md                    # This file
+```
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -104,8 +150,11 @@ cd basic-chat-template
 python -m venv venv
 source venv/bin/activate  # Windows: .\venv\Scripts\activate
 
-# Install dependencies
-pip install -r requirements.txt
+# Install the application (production)
+pip install -e .
+
+# OR install with development dependencies
+pip install -e ".[dev]"
 ```
 
 ### 3. Start the Application
@@ -114,10 +163,45 @@ pip install -r requirements.txt
 ollama serve &
 
 # Launch BasicChat
-streamlit run app.py
+streamlit run src/core/app.py
 ```
 
 🎉 **You're ready!** The application will be available at `http://localhost:8501`
+
+### Alternative Installation Methods
+
+#### Using Make (Recommended for Development)
+```bash
+# Setup development environment
+make dev-setup
+
+# Run the application
+make run
+
+# Run tests
+make test
+
+# Format code
+make format
+```
+
+#### Using pip directly
+```bash
+# Install from PyPI (when available)
+pip install basic-chat
+
+# Run the application
+streamlit run src/core/app.py
+```
+
+#### Using Docker
+```bash
+# Build the image
+docker build -t basic-chat .
+
+# Run the container
+docker run -p 8501:8501 basic-chat
+```
 
 ## 📚 Documentation
 
@@ -134,6 +218,37 @@ streamlit run app.py
 - **[Production Roadmap](docs/ROADMAP.md)** - Future development phases and planned features
 - **[Troubleshooting Guide](docs/TROUBLESHOOTING.md)** - Common issues, known limitations, and solutions
 
+## 🧪 Testing
+
+### Run All Tests
+```bash
+# Run the complete test suite
+pytest tests/ -v
+
+# Run with coverage report
+pytest tests/ --cov=src --cov-report=html
+
+# Run specific test categories
+pytest tests/test_reasoning.py -v      # Reasoning engine tests
+pytest tests/test_session_manager.py -v # Session management tests
+pytest tests/test_enhanced_tools.py -v  # Enhanced tools tests
+```
+
+### Test Results
+- **Latest Test Results**: [test_results_latest.md](test_results_latest.md) - Most recent test run with detailed output
+- **Test Coverage**: 80%+ with 168+ tests across all modules
+- **Test Categories**: Unit tests, integration tests, async tests, and performance tests
+
+### Development Testing
+```bash
+# Run tests in watch mode (for development)
+pytest tests/ -f --tb=short
+
+# Run tests with specific markers
+pytest tests/ -m "not slow"  # Skip slow tests
+pytest tests/ -m "async"     # Run only async tests
+```
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Development Guide](docs/DEVELOPMENT.md) for detailed information.
@@ -149,7 +264,7 @@ We welcome contributions! Please see our [Development Guide](docs/DEVELOPMENT.md
 - **Response Time**: 50-80% faster with caching enabled
 - **Cache Hit Rate**: 70-85% for repeated queries
 - **Uptime**: 99.9% with health monitoring
-- **Test Coverage**: 80%+ with 46+ tests
+- **Test Coverage**: 80%+ with 168+ tests
 
 ## 🔧 Configuration
 

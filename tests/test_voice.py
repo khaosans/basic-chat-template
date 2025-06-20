@@ -12,7 +12,7 @@ import os
 # Add the parent directory to the path so we can import from app
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from app import text_to_speech, get_professional_audio_html
+from src.core.app import text_to_speech, get_professional_audio_html
 
 class TestVoiceFunctionality:
     """Test class for voice functionality"""

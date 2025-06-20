@@ -10,7 +10,7 @@ from abc import ABC, abstractmethod
 import logging
 
 from cachetools import TTLCache
-from config import config
+from src.config import config
 
 logger = logging.getLogger(__name__)
 

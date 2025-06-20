@@ -8,8 +8,8 @@ from pathlib import Path
 import sys
 sys.path.append(str(Path(__file__).parent.parent))
 
-from app import DocumentProcessor, OllamaChat
-from config import config
+from src.core.app import DocumentProcessor, OllamaChat
+from src.config import config
 
 def test_document_processor_init():
     processor = DocumentProcessor()
@@ -97,14 +97,14 @@ def test_config_integration():
 
 def test_async_chat_integration():
     """Test that async chat is properly integrated"""
-    from utils.async_ollama import async_chat
+    from src.utils.async_ollama import async_chat
     assert async_chat is not None
     assert hasattr(async_chat, 'query')
     assert hasattr(async_chat, 'health_check')
 
 def test_cache_integration():
     """Test that cache is properly integrated"""
-    from utils.caching import response_cache
+    from src.utils.caching import response_cache
     assert response_cache is not None
     assert hasattr(response_cache, 'get')
     assert hasattr(response_cache, 'set')

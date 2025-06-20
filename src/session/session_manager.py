@@ -14,8 +14,8 @@ from pathlib import Path
 import logging
 from contextlib import contextmanager
 
-from config import config
-from database_migrations import run_migrations, get_migration_status
+from src.config import config
+from src.database.database_migrations import run_migrations, get_migration_status
 
 logger = logging.getLogger(__name__)
 

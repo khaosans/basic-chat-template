@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 
-from web_search import SearchResult, search_web, WebSearch
+from src.api.web_search import SearchResult, search_web, WebSearch
 
 class TestWebSearch(unittest.TestCase):
     

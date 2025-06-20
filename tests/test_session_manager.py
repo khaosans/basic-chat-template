@@ -9,8 +9,8 @@ import tempfile
 from datetime import datetime, timedelta
 from unittest.mock import patch, MagicMock
 
-from session_manager import SessionManager, ChatSession, SessionMetadata
-from database_migrations import run_migrations
+from src.session import SessionManager, ChatSession, SessionMetadata
+from src.database import run_migrations
 
 
 @pytest.fixture

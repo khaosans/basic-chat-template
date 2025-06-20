@@ -1,14 +1,22 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader, UnstructuredImageLoader
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.chat_models import ChatOllama
 import tempfile
 import os
+import sys
 import importlib.util
 from PIL import Image
 from langchain.docstore.document import Document
-from ollama_api import get_available_models
+
+# Add the project root to Python path for imports
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(current_dir))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+from src.api.ollama_api import get_available_models
 import base64
 from io import BytesIO
 import shutil
